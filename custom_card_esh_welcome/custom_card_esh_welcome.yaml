@@ -102,22 +102,24 @@ card_esh_welcome:
         show_label: false
         show_name: true
         show_entity_picture: false
-        name: |
-          [[[
-            var today = new Date();
-            var time = today.getHours()
-            let welcome = '';
-            if (time >= '18'){
-              welcome = variables.ulm_evening;
-            } else if (time >= '12'){
-              welcome = variables.ulm_afternoon;
-            } else if (time >= '5'){
-              welcome = variables.ulm_morning;
-            } else {
-              welcome = variables.ulm_hello;
-            }
-            return welcome + ', ' + user.name + '!';
-          ]]]
+        # name: |
+        #   [[[
+        #     var today = new Date();
+        #     var time = today.getHours()
+        #     let welcome = '';
+        #     let language = variables.ulm_language
+        #     if (time >= '18'){
+        #       welcome = variables.ulm_evening;
+        #     } else if (time >= '12'){
+        #       welcome = variables.ulm_afternoon;
+        #     } else if (time >= '5'){
+        #       welcome = variables.ulm_morning;
+        #     } else {
+        #       welcome = variables.ulm_hello;
+        #     }
+        #     return welcome + ', ' + user.name + '!';
+        #   ]]]
+        # return welcome + ', ' + user.name + '! <br> HASS Language: ' + hass.language + '<br> Languagecode: ' + variables.ulm_language_code;
         styles:
           name:
             - align-self: "start"
