@@ -38,6 +38,13 @@ card_esh_welcome:
           var color = colors[Math.floor(Math.random() * colors.length)];
           return color;
         ]]]
+    entity_6:
+      color: >
+        [[[
+          var colors = ['yellow', 'blue', 'red', 'purple','green', 'pink'];
+          var color = colors[Math.floor(Math.random() * colors.length)];
+          return color;
+        ]]]
   show_icon: false
   show_label: true
   show_name: false
@@ -154,6 +161,7 @@ card_esh_welcome:
           entity_3: "[[[ return variables.entity_3 ]]]"
           entity_4: "[[[ return variables.entity_4 ]]]"
           entity_5: "[[[ return variables.entity_5 ]]]"
+          entity_6: "[[[ return variables.entity_6 ]]]"
 
 card_esh_welcome_title:
   tap_action:
@@ -198,7 +206,8 @@ card_esh_welcome_nav:
                         (variables.entity_2?.nav ? 'item2' : ''),
                         (variables.entity_3?.nav ? 'item3' : ''),
                         (variables.entity_4?.nav ? 'item4' : ''),
-                        (variables.entity_5?.nav ? 'item5' : '')].join(' ') + "'";
+                        (variables.entity_5?.nav ? 'item5' : ''),
+                        (variables.entity_6?.nav ? 'item6' : '')].join(' ') + "'";
           ]]]
       - grid-template-columns: |
           [[[
@@ -206,7 +215,8 @@ card_esh_welcome_nav:
                     (variables.entity_2?.nav ? '1fr' : ''),
                     (variables.entity_3?.nav ? '1fr' : ''),
                     (variables.entity_4?.nav ? '1fr' : ''),
-                    (variables.entity_5?.nav ? '1fr' : '')].join(' ');
+                    (variables.entity_5?.nav ? '1fr' : ''),
+                    (variables.entity_6?.nav ? '1fr' : '')].join(' ');
           ]]]
       - grid-template-rows: "min-content"
       - justify-items: "center"
@@ -227,7 +237,8 @@ card_esh_welcome_nav:
                       variables.entity_2?.nav,
                       variables.entity_3?.nav,
                       variables.entity_4?.nav,
-                      variables.entity_5?.nav].filter(el => el !== undefined).length;
+                      variables.entity_5?.nav,
+                      variables.entity_6?.nav].filter(el => el !== undefined).length;
             ]]]
           entity: "[[[ return variables.entity_1; ]]]"
     item2:
@@ -241,7 +252,8 @@ card_esh_welcome_nav:
                       variables.entity_2?.nav,
                       variables.entity_3?.nav,
                       variables.entity_4?.nav,
-                      variables.entity_5?.nav].filter(el => el !== undefined).length;
+                      variables.entity_5?.nav,
+                      variables.entity_6?.nav].filter(el => el !== undefined).length;
             ]]]
           entity: "[[[ return variables.entity_2; ]]]"
     item3:
@@ -255,7 +267,8 @@ card_esh_welcome_nav:
                       variables.entity_2?.nav,
                       variables.entity_3?.nav,
                       variables.entity_4?.nav,
-                      variables.entity_5?.nav].filter(el => el !== undefined).length;
+                      variables.entity_5?.nav,
+                      variables.entity_6?.nav].filter(el => el !== undefined).length;
             ]]]
           entity: "[[[ return variables.entity_3; ]]]"
     item4:
@@ -269,7 +282,8 @@ card_esh_welcome_nav:
                       variables.entity_2?.nav,
                       variables.entity_3?.nav,
                       variables.entity_4?.nav,
-                      variables.entity_5?.nav].filter(el => el !== undefined).length;
+                      variables.entity_5?.nav,
+                      variables.entity_6?.nav].filter(el => el !== undefined).length;
             ]]]
           entity: "[[[ return variables.entity_4; ]]]"
     item5:
@@ -283,9 +297,25 @@ card_esh_welcome_nav:
                       variables.entity_2?.nav,
                       variables.entity_3?.nav,
                       variables.entity_4?.nav,
-                      variables.entity_5?.nav].filter(el => el !== undefined).length;
+                      variables.entity_5?.nav,
+                      variables.entity_6?.nav].filter(el => el !== undefined).length;
             ]]]
           entity: "[[[ return variables.entity_5; ]]]"
+    item6:
+      card:
+        type: "custom:button-card"
+        template: "card_esh_welcome_pill_nav"
+        variables:
+          number_of_nav_pills: |
+            [[[
+              return [variables.entity_1?.nav,
+                      variables.entity_2?.nav,
+                      variables.entity_3?.nav,
+                      variables.entity_4?.nav,
+                      variables.entity_5?.nav,
+                      variables.entity_6?.nav].filter(el => el !== undefined).length;
+            ]]]
+          entity: "[[[ return variables.entity_6; ]]]"
 
 card_esh_welcome_pill_nav:
   tap_action:
