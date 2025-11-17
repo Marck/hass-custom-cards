@@ -1,4 +1,5 @@
 ---
+# Source: https://github.com/UI-Lovelace-Minimalist/UI/blob/main/docs/usage/custom_cards/custom_card_esh_welcome.md
 card_esh_welcome:
   template: "ulm_language_variables"
   variables:
