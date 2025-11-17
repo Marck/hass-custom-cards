@@ -3,6 +3,7 @@ card_esh_welcome:
   template: "ulm_language_variables"
   variables:
     ulm_weather: "[[[ return variables.ulm_weather]]]"
+    ulm_sun_set: "[[[ return variables.ulm_sun_set]]]"
     entity_1:
       color: >
         [[[
@@ -55,7 +56,7 @@ card_esh_welcome:
             if(variables.ulm_card_esh_welcome_collapse && states[variables.ulm_card_esh_welcome_collapse].state == 'on'){
               return "\'item1\' \'item2\' ";
             } else {
-              return "\'item1\' \'item2\' \'item3\'";
+              return "\'item1\' \'item2\' \'item3\' \'item4\'";
             }
           ]]]
       - grid-template-columns: "1fr"
@@ -94,6 +95,7 @@ card_esh_welcome:
         variables:
           ulm_card_esh_welcome_collapse: "[[[ return variables.ulm_card_esh_welcome_collapse ]]]"
           ulm_weather: "[[[ return variables.ulm_weather]]]"
+          ulm_sun_set: "[[[ return variables.ulm_sun_set]]]"
         styles:
           card:
             - border-radius: "none"
@@ -102,49 +104,50 @@ card_esh_welcome:
             - margin-left: "relative"
             - cursor: "default"
             - "--mdc-ripple-press-opacity": 0   # prevent click animation
+    # Disabled, we don't want the welcome message
+    # item2:
+    #   card:
+    #     type: "custom:button-card"
+    #     show_icon: false
+    #     show_label: false
+    #     show_name: true
+    #     show_entity_picture: false
+    #     # name: |
+    #     #   [[[
+    #     #     var today = new Date();
+    #     #     var time = today.getHours()
+    #     #     let welcome = '';
+    #     #     let language = variables.ulm_language
+    #     #     if (time >= '18'){
+    #     #       welcome = variables.ulm_evening;
+    #     #     } else if (time >= '12'){
+    #     #       welcome = variables.ulm_afternoon;
+    #     #     } else if (time >= '5'){
+    #     #       welcome = variables.ulm_morning;
+    #     #     } else {
+    #     #       welcome = variables.ulm_hello;
+    #     #     }
+    #     #     return welcome + ', ' + user.name + '!';
+    #     #   ]]]
+    #     # return welcome + ', ' + user.name + '! <br> HASS Language: ' + hass.language + '<br> Languagecode: ' + variables.ulm_language_code;
+    #     styles:
+    #       name:
+    #         - align-self: "start"
+    #         - justify-self: "start"
+    #         - font-weight: "bold"
+    #         - font-size: "24px"
+    #         - margin-left: "16px"
+    #       grid:
+    #         - grid-template-areas: "'i n' 'i l'"
+    #         - grid-template-columns: "min-content auto"
+    #         - grid-template-rows: "min-content min-content"
+    #         - text-align: "start"
+    #       card:
+    #         - box-shadow: "none"
+    #         - padding-bottom: "8px"
+    #         - cursor: "default"
+    #         - "--mdc-ripple-press-opacity": 0   # prevent click animation
     item2:
-      card:
-        type: "custom:button-card"
-        show_icon: false
-        show_label: false
-        show_name: true
-        show_entity_picture: false
-        # name: |
-        #   [[[
-        #     var today = new Date();
-        #     var time = today.getHours()
-        #     let welcome = '';
-        #     let language = variables.ulm_language
-        #     if (time >= '18'){
-        #       welcome = variables.ulm_evening;
-        #     } else if (time >= '12'){
-        #       welcome = variables.ulm_afternoon;
-        #     } else if (time >= '5'){
-        #       welcome = variables.ulm_morning;
-        #     } else {
-        #       welcome = variables.ulm_hello;
-        #     }
-        #     return welcome + ', ' + user.name + '!';
-        #   ]]]
-        # return welcome + ', ' + user.name + '! <br> HASS Language: ' + hass.language + '<br> Languagecode: ' + variables.ulm_language_code;
-        styles:
-          name:
-            - align-self: "start"
-            - justify-self: "start"
-            - font-weight: "bold"
-            - font-size: "24px"
-            - margin-left: "16px"
-          grid:
-            - grid-template-areas: "'i n' 'i l'"
-            - grid-template-columns: "min-content auto"
-            - grid-template-rows: "min-content min-content"
-            - text-align: "start"
-          card:
-            - box-shadow: "none"
-            - padding-bottom: "8px"
-            - cursor: "default"
-            - "--mdc-ripple-press-opacity": 0   # prevent click animation
-    item3:
       card:
         type: "custom:button-card"
         template: "card_esh_welcome_nav"
@@ -343,14 +346,15 @@ card_esh_welcome_pill_nav:
       - place-self: "center"
       - width: "[[[ return (52 * (1+(5-Math.max(variables.number_of_nav_pills, 3))*0.25)) + 'px'; ]]]"
       - height: "[[[ return (84 * (1+(5-Math.max(variables.number_of_nav_pills, 3))*0.25)) + 'px'; ]]]"
-      - box-shadow: >
-          [[[
-            if (hass.themes.darkMode){
-              return "0px 2px 4px 0px rgba(0,0,0,0.80)";
-            } else {
-              return "var(--box-shadow)";
-            }
-          ]]]
+      # Disable shadow as we don't use pill names
+      # - box-shadow: >
+      #     [[[
+      #       if (hass.themes.darkMode){
+      #         return "0px 2px 4px 0px rgba(0,0,0,0.80)";
+      #       } else {
+      #         return "var(--box-shadow)";
+      #       }
+      #     ]]]
       - "--mdc-ripple-press-opacity": 0.12    # allow click animation
   color: "var(--google-grey)"
   custom_fields:
@@ -421,8 +425,8 @@ card_esh_welcome_topbar:
   show_name: true
   styles:
     grid:
-      - grid-template-areas: "'item1 item2 item3'"
-      - grid-template-columns: "1fr 7fr 1fr"
+      - grid-template-areas: "'item1 item2 item3 item4'"
+      - grid-template-columns: "1fr 7fr 1fr 1fr"
       - grid-template-rows: "min-content"
       - justify-items: "center"
     card:
@@ -486,6 +490,27 @@ card_esh_welcome_topbar:
                 ]]]
             - "--mdc-ripple-press-opacity": 0.12    # allow click animation
     item3:
+      card:
+        type: "custom:button-card"
+        template: "chip_mdi_icon_only"
+        variables:
+          ulm_sun_set: "[[[ return variables.ulm_sun_set]]]"
+        tap_action:
+          action: "more-info"
+        entity: "[[[ return variables.ulm_sun_set]]]"
+        styles:
+          card:
+            # - width: "200px"
+            - box-shadow: >
+                [[[
+                  if (hass.themes.darkMode){
+                    return "0px 2px 4px 0px rgba(0,0,0,0.80)";
+                  } else {
+                    return "var(--box-shadow)";
+                  }
+                ]]]
+            - "--mdc-ripple-press-opacity": 0.12    # allow click animation
+    item4:
       card:
         type: "custom:button-card"
         template: "chip_mdi_icon_only"
